@@ -1,0 +1,140 @@
+<mujoco model="URDF_XG_Robot_Arm_Urdf_V1_1">
+  <default>
+    <default class="robot">
+      <default class="motor">
+        <joint damping="0.1"/>
+        <position forcerange="-20 20"/>
+      </default>
+      <default class="visual">
+        <geom material="visualgeom" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision">
+        <geom material="collision_material" condim="3" contype="0" conaffinity="1" priority="1" group="1" solref="0.005 1" friction="1 0.01 0.01" />
+        <equality solimp="0.99 0.999 1e-05" solref="0.005 1" />
+      </default>
+    </default>
+  </default>
+
+  <compiler angle="radian" />
+
+  <asset>
+    <material name="defalut_visual" rgba="0.75294 0.75294 0.75294 1" />
+    <material name="default_material" rgba="0.7 0.7 0.7 1" />
+    <material name="collision_material" rgba="1.0 0.28 0.1 0.9" />
+    <mesh name="base_link.STL" file="./meshes/base_link.STL" />
+    <mesh name="link1.STL" file="./meshes/link1.STL" />
+    <mesh name="link2.STL" file="./meshes/link2.STL" />
+    <mesh name="link3.STL" file="./meshes/link3.STL" />
+    <mesh name="link4.STL" file="./meshes/link4.STL" />
+    <mesh name="link5.STL" file="./meshes/link5.STL" />
+    <mesh name="ee_link.STL" file="./meshes/ee_link.STL" />
+    <texture type="skybox" file="./asset/desert.png"
+        gridsize="3 4" gridlayout=".U..LFRB.D.." />
+    <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
+        width="64" height="64" mark="cross" markrgb=".8 .8 .8" />
+    <material name="plane" reflectance="0.3" texture="plane" texrepeat="4 4" texuniform="true"/>
+    <material name="box" rgba="0 0.5 0 1"  emission="0"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane"
+            condim="3" />
+    <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1"
+        diffuse=".5 .5 .5" specular=".5 .5 .5" />
+    <body name="base_link" pos="0.00000000 0.00000000 0.00000000" quat="1 0 0 0" childclass="robot">
+      <!-- <freejoint name="floating_base" /> -->
+      <geom name="base_link_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="base_link.STL" class="collision" />
+      <geom name="base_link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="defalut_visual" type="mesh" mesh="base_link.STL" class="visual" />
+      <body name="link1" pos="0 0 0.166" quat="0.7071054825112363 0.0 0.0 0.7071080798594735">
+        <joint name="joint1" type="hinge" ref="0.0" class="motor" axis="0 0 1" />
+        <inertial pos="0.000159015425944007 -0.0243405579392273 -0.0177069078146256" quat="1.0 0.0 0.0 0.0" mass="0.0608469523040024" diaginertia="3.70074391646153e-05 2.56788832154839e-05 3.87763473470933e-05" />
+        <geom name="link1_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link1.STL" class="collision" />
+        <geom name="link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="defalut_visual" type="mesh" mesh="link1.STL" class="visual" />
+        <body name="link2" pos="0 0 0" quat="0.4999981633974483 0.49999999999662686 -0.49999999999662686 0.5000018366025516">
+          <joint name="joint2" type="hinge" ref="0.0" class="motor" range="-1.5708 1.5708" axis="0 0 1" />
+          <inertial pos="0.100016791971952 0.00010706633715631 -0.0107835162525267" quat="1.0 0.0 0.0 0.0" mass="0.433546101825407" diaginertia="0.000140434169717076 0.00105045835658617 0.00104172634579532" />
+          <geom name="link2_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link2.STL" class="collision" />
+          <geom name="link2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="defalut_visual" type="mesh" mesh="link2.STL" class="visual" />
+          <body name="link3" pos="0.2 0 0" quat="-2.5973434669646147e-06 -0.707105482506466 -0.7071080798547033 -2.597353007557415e-06">
+            <joint name="joint3" type="hinge" ref="0.0" class="motor" range="0 3.1416" axis="0 0 1" />
+            <inertial pos="0.0413167215618623 -0.0479933927735263 -0.0109451750096955" quat="1.0 0.0 0.0 0.0" mass="0.163443679549629" diaginertia="0.000132142857401717 7.6101137062348e-05 0.000133520429120215" />
+            <geom name="link3_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link3.STL" class="collision" />
+            <geom name="link3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="defalut_visual" type="mesh" mesh="link3.STL" class="visual" />
+            <body name="link4" pos="0.047631 -0.1845 0" quat="0.7071054825112363 -0.7071080798594735 0.0 0.0">
+              <joint name="joint4" type="hinge" ref="0.0" class="motor" axis="0 0 1" />
+              <inertial pos="-2.8160808468243E-05 -0.00682767077230628 0.0299455082197141" quat="1.0 0.0 0.0 0.0" mass="0.178465854809275" diaginertia="0.00010542070955742 0.000111293192127703 4.4231117465552e-05" />
+              <geom name="link4_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link4.STL" class="collision" />
+              <geom name="link4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="defalut_visual" type="mesh" mesh="link4.STL" class="visual" />
+              <body name="link5" pos="0 0 0" quat="0.4999981633974483 0.49999999999662686 -0.49999999999662686 0.5000018366025516">
+                <joint name="joint5" type="hinge" ref="0.0" class="motor" range="-1.5708 0" axis="0 0 1" />
+                <inertial pos="0.000156431818420899 -0.0617917966301206 -0.0100252833788212" quat="1.0 0.0 0.0 0.0" mass="0.15793222447205" diaginertia="0.000135933655838788 5.60082572905534e-05 0.000121456700565665" />
+                <geom name="link5_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link5.STL" class="collision" />
+                <geom name="link5_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="defalut_visual" type="mesh" mesh="link5.STL" class="visual" />
+                <body name="ee_link" pos="0 -0.125 0" quat="0.7071054825112363 0.7071080798594735 0.0 0.0">
+                  <joint name="joint6" type="hinge" ref="0.0" class="motor" axis="0 0 1" />
+                  <inertial pos="0 5.0666E-17 -0.0081069" quat="1.0 0.0 0.0 0.0" mass="0.0088164" diaginertia="6.5293e-07 6.5293e-07 9.3068e-07" />
+                  <geom name="ee_link_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="ee_link.STL" class="collision" />
+                  <geom name="ee_link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" material="defalut_visual" type="mesh" mesh="ee_link.STL" class="visual" />
+                  <camera name="ee_camera" pos="0 0 0" quat="0 0.707 0.707 0" fovy="60" />
+                  <site name="ee_site" pos="0 0 0" />
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <site name="base_link_site" pos="0 0 0" quat="1 0 0 0" />
+      <camera name="front_camera" mode="track" fovy="90.0" quat="4.329780281177467e-17 4.329780281177466e-17 0.7071067811865475 0.7071067811865476" pos="0.0 2.0 0.5" />
+      <camera name="side_camera" mode="track" fovy="90.0" quat="-0.5 -0.4999999999999999 0.5 0.5000000000000001" pos="-2.0 0.0 0.5" />
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="joint1_ctrl" joint="joint1" class="motor" gear="1" />
+    <motor name="joint2_ctrl" joint="joint2" class="motor" gear="1" />
+    <motor name="joint3_ctrl" joint="joint3" class="motor" gear="1" />
+    <motor name="joint4_ctrl" joint="joint4" class="motor" gear="1" />
+    <motor name="joint5_ctrl" joint="joint5" class="motor" gear="1" />
+    <motor name="joint6_ctrl" joint="joint6" class="motor" gear="1" />
+  </actuator>
+
+  <!-- <actuator>
+    <position name="joint1_ctrl" joint="joint1" class="motor" gear="1" kp="10" kv="1" />
+    <position name="joint2_ctrl" joint="joint2" class="motor" gear="1" kp="10" kv="1" />
+    <position name="joint3_ctrl" joint="joint3" class="motor" gear="1" kp="10" kv="1" />
+    <position name="joint4_ctrl" joint="joint4" class="motor" gear="1" kp="1" kv="0.5" />
+    <position name="joint5_ctrl" joint="joint5" class="motor" gear="1" kp="10" kv="2" />
+    <position name="joint6_ctrl" joint="joint6" class="motor" gear="1" kp="10" kv="1" />
+  </actuator> -->
+
+  <!-- <actuator>
+    <position name="joint1_ctrl" joint="joint1" class="motor" gear="1" />
+    <position name="joint2_ctrl" joint="joint2" class="motor" gear="1" />
+    <position name="joint3_ctrl" joint="joint3" class="motor" gear="1" />
+    <position name="joint4_ctrl" joint="joint4" class="motor" gear="1" />
+    <position name="joint5_ctrl" joint="joint5" class="motor" gear="1" />
+    <position name="joint6_ctrl" joint="joint6" class="motor" gear="1" />
+  </actuator> -->
+
+  <contact>
+    <exclude body1="base_link" body2="link1" />
+    <exclude body1="link1" body2="link2" />
+    <exclude body1="link2" body2="link3" />
+    <exclude body1="link3" body2="link4" />
+    <exclude body1="link4" body2="link5" />
+    <exclude body1="link5" body2="ee_link" />
+  </contact>
+
+  <sensor>
+    <framepos name="base_link_site_pos" objtype="site" objname="base_link_site" />
+    <framequat name="base_link_site_quat" objtype="site" objname="base_link_site" />
+    <framelinvel name="base_link_site_linvel" objtype="site" objname="base_link_site" />
+    <frameangvel name="base_link_site_angvel" objtype="site" objname="base_link_site" />
+    <velocimeter name="base_link_site_vel" site="base_link_site" />
+    <!-- 为末端执行器添加传感器 -->
+    <framepos name="ee_site_pos" objtype="site" objname="ee_site" />
+    <framelinvel name="ee_site_linvel" objtype="site" objname="ee_site" />
+    <frameangvel name="ee_site_angvel" objtype="site" objname="ee_site" />
+    <velocimeter name="ee_site_vel" site="ee_site" />
+  </sensor>
+</mujoco>
