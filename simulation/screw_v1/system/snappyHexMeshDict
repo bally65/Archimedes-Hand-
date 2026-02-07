@@ -1,0 +1,96 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+
+castellatedMesh true;
+snap            true;
+addLayers       false;
+
+geometry
+{
+    screw.stl
+    {
+        type triSurfaceMesh;
+        name screw;
+    }
+};
+
+castellatedMeshControls
+{
+    maxLocalCells 1000000;
+    maxGlobalCells 2000000;
+    minRefinementCells 10;
+    nCellsBetweenLevels 3;
+    resolveFeatureAngle 30;
+
+    features
+    (
+        {
+            file "screw.eMesh";
+            level 4;
+        }
+    );
+
+    refinementSurfaces
+    {
+        screw
+        {
+            level (3 4);
+            resolveFeatureAngle 30;
+        }
+    }
+
+    refinementRegions
+    {
+    }
+
+    locationInMesh (0.1 0.1 0.1);
+    allowFreeStandingZoneFaces true;
+}
+
+snapControls
+{
+    nSmoothPatch 3;
+    tolerance 2.0;
+    nSolveIter 30;
+    nRelaxIter 5;
+    nFeatureSnapIter 10;
+}
+
+addLayersControls
+{
+    relativeSizes true;
+    layers
+    {
+    }
+    expansionRatio 1.0;
+    finalLayerThickness 0.3;
+    minThickness 0.1;
+    nGrow 0;
+}
+
+meshQualityControls
+{
+    maxNonOrtho 65;
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4;
+    maxConcave 80;
+    minVol 1e-13;
+    minTetQuality 1e-30;
+    minArea -1;
+    minTwist -1;
+    minTriangleTwist -1;
+    minDeterminant 0.001;
+    minFaceWeight 0.02;
+    minVolRatio 0.01;
+    mustBePhoto yes;
+
+    errorReduction 0.1;
+    nSmoothScale 4;
+}
+
+mergeTolerance 1e-6;
