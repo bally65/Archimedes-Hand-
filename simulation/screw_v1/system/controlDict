@@ -14,10 +14,27 @@ endTime         1000;
 deltaT          1;
 writeControl    timeStep;
 writeInterval   100;
-purgeWrite      0;
+purgeWrite      2;
 writeFormat     ascii;
 writePrecision  6;
 writeCompression off;
 timeFormat      general;
 timePrecision   6;
 runTimeModifiable true;
+
+/*
+functions
+{
+    forces
+    {
+        type            forces;
+        libs            ("libforces.so");
+        patches         (screw);
+        rho             rhoInf;
+        rhoInf          1000; // Density of water
+        CofR            (0 0 0);
+        writeControl    timeStep;
+        writeInterval   1;
+    }
+}
+*/

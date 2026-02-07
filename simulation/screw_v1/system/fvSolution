@@ -23,6 +23,14 @@ solvers
         tolerance       1e-05;
         relTol          0.1;
     }
+
+    "(k|epsilon|nut)"
+    {
+        solver          smoothSolver;
+        smoother        GaussSeidel;
+        tolerance       1e-05;
+        relTol          0.1;
+    }
 }
 
 SIMPLE
