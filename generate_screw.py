@@ -24,10 +24,13 @@ def save_ascii_stl(vertices, faces, file_path):
             f.write("endfacet\n")
         f.write("endsolid archimedes_screw\n")
 
-def generate_solid_screw(radius, length, turns, shaft_ratio=0.5, thickness=2.0):
+def generate_solid_screw(radius, length, turns, handedness="right", shaft_ratio=0.5, thickness=2.0):
     num_points = 200
     z = np.linspace(0, length, num_points)
-    theta = np.linspace(0, 2 * np.pi * turns, num_points)
+    
+    direction = 1.0 if handedness == "right" else -1.0
+    theta = np.linspace(0, direction * 2 * np.pi * turns, num_points)
+    
     shaft_radius = radius * shaft_ratio
     
     vertices = []
@@ -107,9 +110,10 @@ if __name__ == "__main__":
     parser.add_argument("--length", type=float, default=300)
     parser.add_argument("--turns", type=float, default=6)
     parser.add_argument("--thick", type=float, default=2.0)
+    parser.add_argument("--handed", type=str, choices=["right", "left"], default="right")
     args = parser.parse_args()
     
     # Use output path relative to workspace or as specified
-    v, f = generate_solid_screw(args.radius, args.length, args.turns, thickness=args.thick)
+    v, f = generate_solid_screw(args.radius, args.length, args.turns, handedness=args.handed, thickness=args.thick)
     save_ascii_stl(v, f, args.name)
-    print(f"✅ Generated SOLID STL: {args.name}")
+    print(f"✅ Generated SOLID {args.handed.upper()} STL: {args.name}")
