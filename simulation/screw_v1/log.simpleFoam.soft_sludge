@@ -1,0 +1,76 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:                                        |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : OPENFOAM=1912 patch=200626
+Arch   : "LSB;label=32;scalar=64"
+Exec   : simpleFoam
+Date   : Feb 08 2026
+Time   : 02:50:47
+Host   : Moltbot-Server
+PID    : 8951
+--> FOAM Warning : 
+    From function Foam::fileName Foam::cwd_L()
+    in file POSIX.C at line 494
+    PWD is not the cwd() - reverting to physical description
+I/O    : uncollated
+--> FOAM Warning : 
+    From function Foam::fileName Foam::cwd_L()
+    in file POSIX.C at line 494
+    PWD is not the cwd() - reverting to physical description
+Case   : /home/vboxuser/.openclaw/workspace/projects/robotics/simulation/screw_v1
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+SIMPLE: no convergence criteria found. Calculations will run for 1000 steps.
+
+Reading field p
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Selecting incompressible transport model Bingham
+
+
+--> FOAM FATAL IO ERROR: 
+Unknown viscosityModel type Bingham
+
+Valid viscosityModel types :
+
+12
+(
+ArrheniusBirdCarreau
+ArrheniusCasson
+ArrheniusCrossPowerLaw
+ArrheniusHerschelBulkley
+ArrheniusNewtonian
+BirdCarreau
+Casson
+CrossPowerLaw
+HerschelBulkley
+Newtonian
+powerLaw
+strainRateFunction
+)
+
+
+
+file: /home/vboxuser/.openclaw/workspace/projects/robotics/simulation/screw_v1/constant/transportProperties from line 2 to line 4.
+
+    From function static Foam::autoPtr<Foam::viscosityModel> Foam::viscosityModel::New(const Foam::word&, const Foam::dictionary&, const Foam::volVectorField&, const Foam::surfaceScalarField&)
+    in file viscosityModels/viscosityModel/viscosityModelNew.C at line 51.
+
+FOAM exiting
+
