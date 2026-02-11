@@ -4,7 +4,7 @@ import numpy as np
 import time
 
 # Load the model
-model = mujoco.MjModel.from_xml_path('projects/robotics/5. Deep_LR/archimedes_hand_mujoco.xml')
+model = mujoco.MjModel.from_xml_path('archimedes_hand_mujoco.xml')
 data = mujoco.MjData(model)
 
 def set_screw_velocities(fl, fr, rl, rr):

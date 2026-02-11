@@ -197,7 +197,8 @@ class RobotArmEnv(gym.Env):
         #     close_range_bonus = 3 * (0.01 - distance)/0.01
         
         # 综合距离奖励
-        reward += improvement_reward + base_distance_penalty + phase_distance_reward + close_range_bonus
+        smooth_distance_reward = np.exp(-distance * 2.0) * 2.0
+        reward += improvement_reward + base_distance_penalty + phase_distance_reward + close_range_bonus + smooth_distance_reward
         
         # 速度奖励 - 鼓励在整个过程中保持适中的速度
         ee_body_id = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_BODY, "ee_link")
@@ -214,7 +215,7 @@ class RobotArmEnv(gym.Env):
         movement_dir = ee_vel / (np.linalg.norm(ee_vel) + 1e-6)
         # 夹角越小奖励越高
         direction_cos = np.dot(to_target, movement_dir)
-        direction_reward = max(0, direction_cos)**2 * 1.0  # 只奖励正向运动，平方以增加奖励差异
+        direction_reward = max(0, direction_cos)**2 * 2.0  # 只奖励正向运动，平方以增加奖励差异
         reward += direction_reward
                  
         # 碰撞惩罚 - 检查是否有接触
@@ -222,7 +223,7 @@ class RobotArmEnv(gym.Env):
         collision_detected = False
         for i in range(self.data.ncon):
             # 如果检测到碰撞，给予惩罚
-            collision_penalty -= 5000.0
+            collision_penalty -= 1000.0
             collision_detected = True
             
         reward += collision_penalty

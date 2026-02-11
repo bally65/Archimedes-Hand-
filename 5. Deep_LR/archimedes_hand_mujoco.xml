@@ -13,7 +13,7 @@
       </default>
       <default class="screw">
         <joint type="hinge" axis="0 1 0" damping="0.5" />
-        <geom type="mesh" class="collision" />
+        <geom type="mesh" material="collision_material" condim="3" contype="1" conaffinity="1" priority="1" group="1" friction="2 0.5 0.5" />
       </default>
     </default>
   </default>
@@ -50,7 +50,7 @@
     <!-- Mobile Base -->
     <body name="mobile_base" pos="0 0 0.1">
       <freejoint />
-      <geom name="chassis" type="mesh" mesh="base_plate_mesh" material="chassis_mat" class="collision" />
+      <geom name="chassis" type="mesh" mesh="base_plate_mesh" material="chassis_mat" />
       
       <!-- Screws: Scale factor was 1000 in script (mm to m), positions adjusted -->
       <!-- FL: Left Handed -->

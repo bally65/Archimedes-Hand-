@@ -28,8 +28,8 @@
     <mesh name="link4.STL" file="./meshes/link4.STL" />
     <mesh name="link5.STL" file="./meshes/link5.STL" />
     <mesh name="ee_link.STL" file="./meshes/ee_link.STL" />
-    <texture type="skybox" file="./asset/desert.png"
-        gridsize="3 4" gridlayout=".U..LFRB.D.." />
+    <!-- <texture type="skybox" file="./asset/desert.png"
+        gridsize="3 4" gridlayout=".U..LFRB.D.." /> -->
     <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9"
         width="64" height="64" mark="cross" markrgb=".8 .8 .8" />
     <material name="plane" reflectance="0.3" texture="plane" texrepeat="4 4" texuniform="true"/>
