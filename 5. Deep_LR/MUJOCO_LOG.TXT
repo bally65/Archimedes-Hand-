@@ -103,3 +103,12 @@ WARNING: Nan, Inf or huge value in QVEL at DOF 15. The simulation is unstable. T
 Fri Feb 13 19:22:30 2026
 WARNING: Nan, Inf or huge value in QACC at DOF 15. The simulation is unstable. Time = 0.0010.
 
+Fri Feb 13 19:22:50 2026
+WARNING: Nan, Inf or huge value in QVEL at DOF 15. The simulation is unstable. Time = 0.0010.
+
+Fri Feb 13 19:22:50 2026
+WARNING: Nan, Inf or huge value in QACC at DOF 15. The simulation is unstable. Time = 0.0010.
+
+Fri Feb 13 19:24:51 2026
+WARNING: Nan, Inf or huge value in QACC at DOF 15. The simulation is unstable. Time = 0.0010.
+

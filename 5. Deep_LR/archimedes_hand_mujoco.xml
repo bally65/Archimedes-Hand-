@@ -1,5 +1,5 @@
 <mujoco model="Archimedes_Hand_Mobile_Arm">
-  <option integrator="RK4" timestep="0.001" iterations="50" solver="Newton" tolerance="1e-10" />
+  <option integrator="Euler" timestep="0.002" iterations="100" solver="Newton" tolerance="1e-10" />
   
   <default>
     <default class="robot">
@@ -49,8 +49,8 @@
     <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="plane" condim="3" />
     <light directional="true" ambient=".3 .3 .3" pos="30 30 30" dir="0 -.5 -1" />
 
-    <!-- Mobile Base -->
-    <body name="mobile_base" pos="0 0 0.1">
+    <!-- Mobile Base (Raised to 0.12m to prevent screw-floor overlap at start) -->
+    <body name="mobile_base" pos="0 0 0.12">
       <freejoint />
       <geom name="chassis" type="mesh" mesh="base_plate_mesh" material="chassis_mat" />
       
