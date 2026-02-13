@@ -1,2 +1,64 @@
-🚀 啟動全系統協同 (Whole-Body) 複合任務訓練...
+🚀 [Version 3.0] 啟動具備地形預測能力的全系統協同訓練...
 Using cuda device
+⏳ 正在進行 1,500,000 步的深度強化學習訓練...
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 3e+03    |
+|    ep_rew_mean     | -5.4e+04 |
+| time/              |          |
+|    episodes        | 100      |
+|    fps             | 175      |
+|    time_elapsed    | 1712     |
+|    total_timesteps | 300100   |
+| train/             |          |
+|    actor_loss      | 2.39     |
+|    critic_loss     | 0.00259  |
+|    learning_rate   | 0.0001   |
+|    n_updates       | 298099   |
+---------------------------------
+----------------------------------
+| rollout/           |           |
+|    ep_len_mean     | 3e+03     |
+|    ep_rew_mean     | -6.05e+04 |
+| time/              |           |
+|    episodes        | 200       |
+|    fps             | 175       |
+|    time_elapsed    | 3421      |
+|    total_timesteps | 600200    |
+| train/             |           |
+|    actor_loss      | 2.56      |
+|    critic_loss     | 0.00319   |
+|    learning_rate   | 0.0001    |
+|    n_updates       | 598199    |
+----------------------------------
+----------------------------------
+| rollout/           |           |
+|    ep_len_mean     | 3e+03     |
+|    ep_rew_mean     | -5.98e+04 |
+| time/              |           |
+|    episodes        | 300       |
+|    fps             | 173       |
+|    time_elapsed    | 5178      |
+|    total_timesteps | 900300    |
+| train/             |           |
+|    actor_loss      | 2.89      |
+|    critic_loss     | 0.0031    |
+|    learning_rate   | 0.0001    |
+|    n_updates       | 898299    |
+----------------------------------
+----------------------------------
+| rollout/           |           |
+|    ep_len_mean     | 3e+03     |
+|    ep_rew_mean     | -5.83e+04 |
+| time/              |           |
+|    episodes        | 400       |
+|    fps             | 173       |
+|    time_elapsed    | 6918      |
+|    total_timesteps | 1200400   |
+| train/             |           |
+|    actor_loss      | 2.9       |
+|    critic_loss     | 0.00289   |
+|    learning_rate   | 0.0001    |
+|    n_updates       | 1198399   |
+----------------------------------
+✅ 地形預測模型訓練完成並存檔！
