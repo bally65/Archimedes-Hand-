@@ -34,8 +34,8 @@ def train_whole_body_v3():
     
     os.makedirs("./models/whole_body_v3", exist_ok=True)
     
-    print("⏳ 正在進行 1,500,000 步的深度強化學習訓練...")
-    model.learn(total_timesteps=1500000, log_interval=100)
+    print("⏳ 正在進行 3,000,000 步的【公頃級】大尺度協同訓練...")
+    model.learn(total_timesteps=3000000, log_interval=100)
     
     model.save("./models/whole_body_v3/td3_terrain_aware_final")
     env.save("./models/whole_body_v3/vec_normalize_v3.pkl")

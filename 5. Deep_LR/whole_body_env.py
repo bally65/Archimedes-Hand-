@@ -89,10 +89,11 @@ class WholeBodyEnv(gym.Env):
             self.model.opt.density = 1000.0
             self.model.opt.viscosity = 0.01
             
-        # 隨機目標 (遠距離挑戰：2.0m ~ 6.0m)
+        # --- Challenge: Large-Scale Navigation (100m Range) ---
+        # Extreme target distance for hectare-scale mission readiness
         self.target_pos = np.array([
-            self.np_random.uniform(2.0, 6.0),
-            self.np_random.uniform(-1.5, 1.5),
+            self.np_random.uniform(10.0, 100.0), # Target up to 100m
+            self.np_random.uniform(-10.0, 10.0), # Wider lateral range
             self.np_random.uniform(0.1, 0.5)
         ])
         
@@ -101,7 +102,7 @@ class WholeBodyEnv(gym.Env):
     def step(self, action):
         # 物理步進
         self.data.ctrl[:6] = np.clip(action[:6] * 12.0, -12.0, 12.0)
-        self.data.ctrl[6:] = np.clip(action[6:] * 8.0, -8.0, 8.0)
+        self.data.ctrl[6:] = np.clip(action[6:] * 10.0, -10.0, 10.0) # Restored torque for speed
         
         for _ in range(5):
             mujoco.mj_step(self.model, self.data)
@@ -109,20 +110,27 @@ class WholeBodyEnv(gym.Env):
         ee_pos = self.data.site_xpos[0]
         dist = np.linalg.norm(ee_pos - self.target_pos)
         
-        # 強化版獎勵函數：加入地形適應獎勵
-        reward = -dist * 3.0 # 加大距離權重
+        # 強化版獎勵函數：加入大尺度導航優化
+        reward = -dist * 0.5 # Lower weight for raw distance to prevent early gradient explosion
         
-        qvel_norm = np.linalg.norm(self.data.qvel)
-        if qvel_norm > 40.0: reward -= 5.0 # 嚴格控制速度
-            
-        if dist < 0.05: reward += 10.0
-        if dist < 0.01: reward += 100.0 
+        # 方向性獎勵 (Progressive Reward)
+        # Calculate velocity towards target
+        base_vel = self.data.qvel[:3]
+        to_target = self.target_pos - ee_pos
+        to_target_unit = to_target / (np.linalg.norm(to_target) + 1e-6)
+        velocity_towards_target = np.dot(base_vel, to_target_unit)
         
-        reward -= 0.05 * np.sum(np.square(action)) # 增加節能權重
+        reward += velocity_towards_target * 2.0 # Strong incentive to keep moving forward
+        
+        if dist < 0.1: reward += 50.0   # Intermediate success
+        if dist < 0.02: reward += 500.0 # Final capture
+        
+        # Energy and stability
+        reward -= 0.01 * np.sum(np.square(action))
         
         is_unstable = not np.isfinite(self.data.qpos).all() or not np.isfinite(self.data.qvel).all()
-        # 延長超時時間到 30 秒以適應長距離
-        done = dist < 0.01 or self.data.time > 30.0 or is_unstable
+        # 延長超時時間到 150 秒以適應 100 公尺跋涉
+        done = dist < 0.02 or self.data.time > 150.0 or is_unstable
         
         if is_unstable: reward -= 200.0
         

@@ -1,19 +1,21 @@
 <mujoco model="Archimedes_Hand_Mobile_Arm">
+  <option integrator="RK4" timestep="0.001" iterations="50" solver="Newton" tolerance="1e-10" />
+  
   <default>
     <default class="robot">
       <default class="motor">
-        <joint damping="0.1"/>
+        <joint damping="0.5"/>
         <position forcerange="-20 20"/>
       </default>
       <default class="visual">
         <geom material="defalut_visual" contype="0" conaffinity="0" group="2" />
       </default>
       <default class="collision">
-        <geom material="collision_material" condim="3" contype="1" conaffinity="1" priority="1" group="1" friction="2 0.5 0.5" />
+        <geom material="collision_material" condim="3" contype="1" conaffinity="1" priority="1" group="1" friction="2 0.5 0.5" solref="0.01 1" solimp="0.9 0.95 0.001" />
       </default>
       <default class="screw">
-        <joint type="hinge" axis="0 1 0" damping="0.5" />
-        <geom type="mesh" material="collision_material" condim="3" contype="1" conaffinity="1" priority="1" group="1" friction="2 0.5 0.5" />
+        <joint type="hinge" axis="0 1 0" damping="1.0" />
+        <geom type="mesh" material="collision_material" condim="3" contype="1" conaffinity="1" priority="1" group="1" friction="2.5 0.5 0.5" solref="0.01 1" />
       </default>
     </default>
   </default>
