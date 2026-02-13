@@ -36,8 +36,8 @@
     <mesh name="link5_mesh" file="link5.STL" />
     <mesh name="ee_link_mesh" file="ee_link.STL" />
     
-    <!-- New Meshes (Scale fixed to 1.0 since script uses real mm/m) -->
-    <mesh name="base_plate_mesh" file="base_plate.stl" />
+    <!-- New Meshes (Scale fixed: screws are in m, base is in mm) -->
+    <mesh name="base_plate_mesh" file="base_plate.stl" scale="0.001 0.001 0.001" />
     <mesh name="screw_left_mesh" file="screw_left.stl" />
     <mesh name="screw_right_mesh" file="screw_right.stl" />
 
