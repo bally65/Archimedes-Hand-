@@ -36,10 +36,10 @@
     <mesh name="link5_mesh" file="link5.STL" />
     <mesh name="ee_link_mesh" file="ee_link.STL" />
     
-    <!-- New Meshes -->
-    <mesh name="base_plate_mesh" file="base_plate.stl" scale="0.001 0.001 0.001" />
-    <mesh name="screw_left_mesh" file="screw_left.stl" scale="0.001 0.001 0.001" />
-    <mesh name="screw_right_mesh" file="screw_right.stl" scale="0.001 0.001 0.001" />
+    <!-- New Meshes (Scale fixed to 1.0 since script uses real mm/m) -->
+    <mesh name="base_plate_mesh" file="base_plate.stl" />
+    <mesh name="screw_left_mesh" file="screw_left.stl" />
+    <mesh name="screw_right_mesh" file="screw_right.stl" />
 
     <texture name="plane" type="2d" builtin="checker" rgb1=".1 .1 .1" rgb2=".9 .9 .9" width="64" height="64" />
     <material name="plane" reflectance="0.3" texture="plane" texrepeat="4 4" texuniform="true"/>
