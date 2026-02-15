@@ -1,0 +1,34 @@
+🚀 [Version 3.0] 啟動具備地形預測能力的全系統協同訓練...
+Using cuda device
+⏳ 正在進行 3,000,000 步的【公頃級】大尺度協同訓練...
+----------------------------------
+| rollout/           |           |
+|    ep_len_mean     | 1.2e+04   |
+|    ep_rew_mean     | -2.96e+05 |
+| time/              |           |
+|    episodes        | 100       |
+|    fps             | 169       |
+|    time_elapsed    | 7072      |
+|    total_timesteps | 1200100   |
+| train/             |           |
+|    actor_loss      | 1.65      |
+|    critic_loss     | 0.00847   |
+|    learning_rate   | 0.0001    |
+|    n_updates       | 1198099   |
+----------------------------------
+----------------------------------
+| rollout/           |           |
+|    ep_len_mean     | 1.2e+04   |
+|    ep_rew_mean     | -2.73e+05 |
+| time/              |           |
+|    episodes        | 200       |
+|    fps             | 170       |
+|    time_elapsed    | 14055     |
+|    total_timesteps | 2400200   |
+| train/             |           |
+|    actor_loss      | 2.16      |
+|    critic_loss     | 0.00966   |
+|    learning_rate   | 0.0001    |
+|    n_updates       | 2398199   |
+----------------------------------
+✅ 地形預測模型訓練完成並存檔！
